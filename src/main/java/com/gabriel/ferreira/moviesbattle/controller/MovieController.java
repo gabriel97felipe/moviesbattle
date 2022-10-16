@@ -1,8 +1,6 @@
 package com.gabriel.ferreira.moviesbattle.controller;
 import com.gabriel.ferreira.moviesbattle.model.Movie;
-import com.gabriel.ferreira.moviesbattle.model.Role;
 import com.gabriel.ferreira.moviesbattle.service.MovieService;
-import com.gabriel.ferreira.moviesbattle.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +16,7 @@ public class MovieController {
     MovieService movieService;
 
     @PostMapping
-    public ResponseEntity<Movie> saveMovie(@RequestBody(required = true)  Movie movie){
+    public ResponseEntity<Movie> saveMovie(@RequestBody()  Movie movie){
         return ResponseEntity.status(HttpStatus.CREATED).body(movieService.saveMovie(movie));
     }
 
@@ -37,4 +35,10 @@ public class MovieController {
         movieService.deleteMovie(id);
         return ResponseEntity.status(HttpStatus.OK).body("Deleted");
     }
+
+    @GetMapping("/random")
+    public ResponseEntity<Movie> getRandomMovie() {
+        return ResponseEntity.status(HttpStatus.OK).body(movieService.getRandomMovie());
+    }
+
 }

@@ -65,6 +65,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User not exists!", "Query did not return user."));
     }
 
+    public User getUserById(String id) throws UserNotFoundException {
+        log.info("Get user by id  {}", id);
+        return userRepository.findById(Long.valueOf(id)).orElseThrow(() -> new UserNotFoundException("User not exists!", "Query did not return user."));
+    }
+
     @Transactional
     public void deleteUsers() {
         log.info("Delete users");

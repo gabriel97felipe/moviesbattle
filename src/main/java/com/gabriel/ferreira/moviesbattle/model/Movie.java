@@ -23,4 +23,6 @@ public class Movie {
     private String name;
 
     private Double rating;
+
+    private Integer ratingCount;
 }

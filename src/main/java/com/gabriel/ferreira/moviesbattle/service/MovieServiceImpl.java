@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -32,5 +34,21 @@ public class MovieServiceImpl implements MovieService {
 
     public void deleteMovie(String id) {
         movieRepository.deleteById(Long.valueOf(id));
+    }
+
+    public Movie getRandomMovie() {
+        Movie firstMovie = movieRepository.findFirstByOrderById();
+        Movie lastMovie = movieRepository.findFirstByOrderByIdDesc();
+        Random r = new Random();
+        Optional<Movie> randomMovie = Optional.empty();
+        while(randomMovie.isEmpty()) {
+            Long getRandomId = r.nextLong(lastMovie.getId()- firstMovie.getId() + 1) + firstMovie.getId();
+            randomMovie = movieRepository.findById(getRandomId);
+        }
+        return randomMovie.get();
+    }
+
+    public Optional<Movie> getMovieByName(String name) {
+        return movieRepository.findByName(name);
     }
 }

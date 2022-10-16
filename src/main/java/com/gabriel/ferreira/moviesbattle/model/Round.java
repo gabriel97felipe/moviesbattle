@@ -1,9 +1,6 @@
 package com.gabriel.ferreira.moviesbattle.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,11 +9,15 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Table(name="Round", uniqueConstraints={@UniqueConstraint(columnNames = {"id"})})
 public class Round {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private int round;
 
     @ManyToOne
     @JoinColumn(name = "movie_one_id")
@@ -27,6 +28,6 @@ public class Round {
     @JoinColumn(name = "movie_two_id")
     private Movie movieTwo;
 
-    private boolean running;
+    private boolean active;
 
 }
