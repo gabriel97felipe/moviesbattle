@@ -2,6 +2,7 @@ package com.gabriel.ferreira.moviesbattle.service;
 
 import com.gabriel.ferreira.moviesbattle.core.exception.model.UserNotFoundException;
 import com.gabriel.ferreira.moviesbattle.model.Match;
+import com.gabriel.ferreira.moviesbattle.model.Ranking;
 import com.gabriel.ferreira.moviesbattle.model.User;
 import com.gabriel.ferreira.moviesbattle.repository.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -57,17 +57,17 @@ public class MatchServiceImpl implements MatchService{
         return matchRepository.findByUserId(Long.valueOf(userId));
     }
 
-    public List<Match> ranking() {
-        return matchRepository.findAllByOrderByPointsDesc().stream().map(this::mapMatch).collect(Collectors.toList());
+    public List<Ranking> ranking() {
+        return matchRepository.findAllByOrderByPointsDesc().stream()
+                .map(this::rankingMatch)
+                .toList();
     }
 
-    public Match mapMatch(Match match) {
-        return Match.builder()
-                .user(match.getUser())
-                .rounds(null)
-                .active(match.isActive())
-                .id(match.getId())
-                .errors(match.getErrors())
+    public Ranking rankingMatch(Match match) {
+        return Ranking.builder()
+                .id(match.hashCode())
+                .user(match.getUser().getUsername())
+                .rounds(match.getRounds().size() + 1)
                 .points(match.getPoints())
                 .build();
     }

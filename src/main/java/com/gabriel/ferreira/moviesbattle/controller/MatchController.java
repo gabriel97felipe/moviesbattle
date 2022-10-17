@@ -1,6 +1,7 @@
 package com.gabriel.ferreira.moviesbattle.controller;
 import com.gabriel.ferreira.moviesbattle.core.exception.model.UserNotFoundException;
 import com.gabriel.ferreira.moviesbattle.model.Match;
+import com.gabriel.ferreira.moviesbattle.model.Ranking;
 import com.gabriel.ferreira.moviesbattle.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class MatchController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Match>> getAllRanking(){
+    public ResponseEntity<List<Ranking>> getAllRanking(){
         return ResponseEntity.status(HttpStatus.OK).body(matchService.ranking());
     }
 
