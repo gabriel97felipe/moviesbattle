@@ -33,7 +33,7 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeHttpRequests().antMatchers("/api/login/**", "/user/token/refresh/**", "/ping/me/**", "/h2-console/**", "/role").permitAll();
+        http.authorizeHttpRequests().antMatchers("/api/login/**", "/user/token/refresh/**", "/ping/me/**", "/h2-console/**", "/role", "/v3/api-docs/**", "/swagger-ui/**").permitAll();
         http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/user").permitAll();
         http.authorizeHttpRequests().anyRequest().authenticated();
         http.headers().frameOptions().disable();
