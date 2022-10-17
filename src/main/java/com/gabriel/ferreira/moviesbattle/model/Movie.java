@@ -1,9 +1,6 @@
 package com.gabriel.ferreira.moviesbattle.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name="Movie", uniqueConstraints={@UniqueConstraint(columnNames = {"id" , "name"})})
 public class Movie {
 

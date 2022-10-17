@@ -90,9 +90,9 @@ public class RoundServiceImpl implements  RoundService {
             roundRepository.save(lastRound.get());
             double resultMovieOne = movieOne.getRating() * movieOne.getRatingCount();
             double resultMovieTwo = movieTwo.getRating() * movieTwo.getRatingCount();
-            Movie correcMovie = resultMovieOne > resultMovieTwo ? movieOne: movieTwo;
+            Movie correctMovie = resultMovieOne > resultMovieTwo ? movieOne: movieTwo;
             String response;
-            if(correcMovie.getId().equals(selectedMovie.get().getId())) {
+            if(correctMovie.getName().equals(selectedMovie.get().getName())) {
                 match.setPoints(match.getPoints() + 1);
                 response = String.format("Well done! Go to the next one here: round/user/%s", userId);
             }
@@ -102,7 +102,7 @@ public class RoundServiceImpl implements  RoundService {
                     match.setActive(false);
                     response = String.format("Your answer is wrong! unfortunately you already missed 3 times, but you can start a new match here: match/user/%s/start", userId);
                 }
-                else response = String.format("Your answer is wrong! The right answer is %s. Go to the next one here: round/user/%s", correcMovie.getName(), userId);
+                else response = String.format("Your answer is wrong! The right answer is %s. Go to the next one here: round/user/%s", correctMovie.getName(), userId);
             }
             matchService.saveMatch(match);
             return response;

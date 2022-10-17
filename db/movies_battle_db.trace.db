@@ -1,3 +1,0 @@
-2022-10-16 18:34:08 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]MATCH"; expected "MERGE"; SQL statement:
-MATCH [42001-214]

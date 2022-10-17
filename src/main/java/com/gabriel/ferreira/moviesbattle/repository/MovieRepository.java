@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     Movie findFirstByOrderById();
     Movie findFirstByOrderByIdDesc();
-    Optional<Movie> findByName(String name);
+    Optional<Movie> findFirstByName(String name);
 }

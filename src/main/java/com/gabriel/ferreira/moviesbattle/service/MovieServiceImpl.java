@@ -49,6 +49,6 @@ public class MovieServiceImpl implements MovieService {
     }
 
     public Optional<Movie> getMovieByName(String name) {
-        return movieRepository.findByName(name);
+        return movieRepository.findFirstByName(name);
     }
 }
