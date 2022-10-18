@@ -3,11 +3,11 @@ Movies Battle é um card game que utiliza a API do IMDB para coletar dois filmes
 
 ### Collection
 
-A collection do projeto para utilização no Insomnia ou Postman está na raíz chamado [collection.json](./collection.json).
+A collection do projeto para utilização no Insomnia ou Postman está na raíz chamado [collection.json](./collection.json). Importe o arquivo (de preferência usando o postman), ou utilize a documentação pelo Open API (/v3/api-docs) ou Swagger-UI (/swagger-ui/index.html).
 
 ### Database
 
-O banco de dados já está populado com uma quantia considerável de filmes. Para efetuar um novo populamento, pode se utilizar o endpoint /webscrapping. Para isso, é necessário gerar uma chave para a utilização da API por meio do RAPID API.
+O banco de dados já está populado com uma quantia considerável de filmes. Para efetuar um novo populamento, pode se utilizar o endpoint /webscrapping. Para isso, é necessário gerar uma chave para a utilização da API por meio do RAPID API. O database pode ser acessado via H2 Console (/h2-console).
 
 ### API
 
